@@ -5,12 +5,25 @@ import com.example.myremoteapp.car.Engine;
 
 import dagger.Binds;
 import dagger.Module;
+import dagger.Provides;
 
 @Module
-public abstract class DieselEngineModule {
+public class DieselEngineModule {
+    private int horsePower;
 
-    @Binds
-    abstract Engine bindEngine(DieselEngine engine);
+    public DieselEngineModule(int horsePower) {
+        this.horsePower = horsePower;
+    }
+
+    @Provides
+    int provideHorsePower() {
+        return horsePower;
+    }
+
+    @Provides
+    Engine provideEngine (DieselEngine engine) {
+        return engine;
+    }
 
 
 }
